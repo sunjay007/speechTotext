@@ -1,8 +1,6 @@
-# Node.js Hello World Sample
+# Node.js with Watson services
 
-This application demonstrates a simple, reusable Node.js web application based on the Express framework.
-
-[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/IBM-Bluemix/nodejs-helloworld)
+This application demonstrates a examples on how to use Watson cloud apis to accomplish several tasks.
 
 ## Run the app locally
 
@@ -10,6 +8,6 @@ This application demonstrates a simple, reusable Node.js web application based o
 + cd into this project's root directory
 + Run `npm install` to install the app's dependencies
 + Run `npm start` to start the app
-+ Access the running app in a browser at <http://localhost:6001>
++ Access the running app in a browser at <http://localhost:6002>
 
 [Install Node.js]: https://nodejs.org/en/download/
