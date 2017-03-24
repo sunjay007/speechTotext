@@ -6,24 +6,37 @@ var speech_to_text = new speeckToTextV1({
   password : 'RpamuTaOnDzm'
 });
 
-var params = {
-  content_type: 'audio/wav'
-};
 
-//create recognize stream
-var recognizeStream = speech_to_text.createRecognizeStream(params);
 
-console.log(recognizeStream);
 
-//pipe in the audio from resources folder
-fs.createReadStream(__dirname + '/resources/speech.wav').pipe(recognizeStream);
+function speechToText(file, res){
+  var params = {
+    content_type: 'audio/wav'
+  };
 
-//pipe out to the transcription.txt
-recognizeStream.pipe(fs.createWriteStream('transcription.txt'));
+  //create recognize stream
+  var recognizeStream = speech_to_text.createRecognizeStream(params);
 
-//to get the strings instead of Buffers from data events
-recognizeStream.setEncoding('utf8');
+  //pipe in the audio from resources folder
+  fs.createReadStream(file).pipe(recognizeStream);
 
-['data', 'results', 'speaker_labels', 'error', 'close'].forEach(function(eventName){
-  recognizeStream.on(eventName, console.log.bind(console, eventName + ' event: '));
-});
+  //pipe out to the transcription.txt
+  recognizeStream.pipe(fs.createWriteStream(__base + '/resources/transcription.txt'));
+
+  //to get the strings instead of Buffers from data events
+  recognizeStream.setEncoding('utf8');
+
+  var i = 0;
+
+  // ['data', 'results', 'speaker_labels', 'error', 'close'].forEach(function(eventName){
+  //   //recognizeStream.on(eventName, console.log.bind(console, eventName + ' event: '));
+  // });
+
+  recognizeStream.on('data', function(result){
+    console.log(new Date().toUTCString() + ' - writing result...' + result);
+    res.json(result);
+  });
+
+}
+
+module.exports.speechToText = speechToText;

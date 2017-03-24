@@ -6,8 +6,12 @@
     "start": "node app.js"
   },
   "dependencies": {
+    "body-parser": "^1.17.1",
     "cfenv": "1.0.x",
     "express": "4.13.x",
+    "express-formidable": "^1.0.0",
+    "multer": "^1.3.0",
+    "path": "^0.12.7",
     "watson-developer-cloud": "^2.26.0"
   },
   "repository": {},
