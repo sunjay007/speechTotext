@@ -20,8 +20,10 @@ function speechToText(file, res){
   //pipe in the audio from resources folder
   fs.createReadStream(file).pipe(recognizeStream);
 
+  var output_filename = __base + '/resources/transcription' + Date.now() + '.txt';
+
   //pipe out to the transcription.txt
-  recognizeStream.pipe(fs.createWriteStream(__base + '/resources/transcription.txt'));
+  recognizeStream.pipe(fs.createWriteStream(output_filename));
 
   //to get the strings instead of Buffers from data events
   recognizeStream.setEncoding('utf8');
